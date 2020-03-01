@@ -17,11 +17,16 @@ EventCommandRepo.prototype.save = function(events) {
 
 EventCommandRepo.prototype._getRowValue = function(event) {
   return this.adapter.getRowValue(
+    event.group,
     event.calendarName,
     event.title,
+    event.startYear,
+    event.startMonth,
+    event.startWeek,
     event.startDayOfWeek,
     event.startDate,
     event.startTime,
+    event.endTime,
     event.duration
     );
 }

@@ -1,5 +1,5 @@
 var Calendars = function() {
-  this._repo = new CalendarQueryRepo();
+  this._repo = new CalendarCommandRepo();
   this._list = [];
 }
 
@@ -31,4 +31,8 @@ Calendars.prototype.findEvents = function(fromDate, toDate) {
     }
   }
   return events;
+}
+
+Calendars.prototype.save = function() {
+  return this._repo.save(this);
 }

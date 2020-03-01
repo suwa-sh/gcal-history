@@ -3,9 +3,10 @@ var LoadService = function() {
 }
 
 
-var LoadCommand = function(startDate, endDate) {
+var LoadCommand = function(startDate, endDate, ignorePrefixes) {
   notEmpty('LoadCommand.startDate', startDate);
   notEmpty('LoadCommand.endDate', endDate);
+  notEmpty('LoadCommand.ignorePrefixes', ignorePrefixes);
   
   // 前後チェック
   if (! isAfterDate(startDate, endDate)) {
@@ -16,6 +17,7 @@ var LoadCommand = function(startDate, endDate) {
 
   this.startDate = startDate;
   this.endDate = endDate;
+  this.ignorePrefixes = ignorePrefixes;
 }
 var LoadResponse = function(command, calendars, events) {
   this.startDate = command.startDate;
@@ -29,7 +31,7 @@ LoadService.prototype.load = function(command) {
   log_info("LoadService.load start");
   notNull('command', command);
 
-  var calendars = this.repo.findAll();
+  var calendars = this.repo.find(command.ignorePrefixes);
   var events = calendars.findEvents(command.startDate, command.endDate);
   events.save();
 

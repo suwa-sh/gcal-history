@@ -14,20 +14,30 @@ HistorySheetAdapter.prototype.insertBatch = function(values) {
 }
 
 HistorySheetAdapter.prototype.getRowValue = function(
+  group,
   calendar,
   title,
+  startYear,
+  startMonth,
+  startWeek,
   startDayOfWeek,
   startDate,
   startTime,
+  endTime,
   duration
   ) {
 
   var rowValue = [];
+  rowValue.push(group);
   rowValue.push(calendar);
   rowValue.push(title);
+  rowValue.push(startYear);
+  rowValue.push(startMonth);
+  rowValue.push(startWeek);
   rowValue.push(startDayOfWeek);
   rowValue.push(startDate);
   rowValue.push(startTime);
+  rowValue.push(endTime);
   rowValue.push(duration);
   return rowValue;
 }
